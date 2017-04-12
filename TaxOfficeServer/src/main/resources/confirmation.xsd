@@ -1,0 +1,43 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://taxoffice.pl/response"
+           targetNamespace="http://taxoffice.pl/response" elementFormDefault="qualified">
+
+    <xs:element name="confirmationList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="document" minOccurs="1" maxOccurs="unbounded" type="tns:Document"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="ImportStatus">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="OK">
+                <xs:annotation>
+                    <xs:documentation>
+                        File imported without error schema validation
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="SCHEMA_ERROR">
+                <xs:annotation>
+                    <xs:documentation>
+                        File imported with error schema validation
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="IMPORT_ERROR">
+                <xs:annotation>
+                    <xs:documentation>
+                        Error file was not imported
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="Document">
+        <xs:attribute name="documentId" type="xs:int"/>
+        <xs:attribute name="status" type="tns:ImportStatus"/>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,45 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://taxoffice.pl/request"
+           targetNamespace="http://taxoffice.pl/request" elementFormDefault="qualified">
+
+    <xs:element name="documentList">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="document" minOccurs="0" maxOccurs="unbounded" type="tns:Document"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="Document">
+        <xs:sequence>
+            <xs:element name="office">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="address" type="tns:Address"/>
+                    </xs:sequence>
+                    <xs:attribute name="name" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="person">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="address" type="tns:Address"/>
+                    </xs:sequence>
+                    <xs:attribute name="firstName" type="xs:string"/>
+                    <xs:attribute name="lastName" type="xs:string"/>
+                    <xs:attribute name="idCard" type="xs:string"/>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="documentId" type="xs:int"/>
+        <xs:attribute name="registrationDate" type="xs:dateTime"/>
+    </xs:complexType>
+
+    <xs:complexType name="Address">
+        <xs:attribute name="country" type="xs:string"/>
+        <xs:attribute name="city" type="xs:string"/>
+        <xs:attribute name="postCode" type="xs:string"/>
+        <xs:attribute name="street" type="xs:string"/>
+        <xs:attribute name="number" type="xs:string"/>
+    </xs:complexType>
+
+</xs:schema>
